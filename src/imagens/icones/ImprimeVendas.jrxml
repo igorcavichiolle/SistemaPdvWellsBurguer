@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ImprimeVendas" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6c98fc04-0599-46ea-a327-0f360dcde81b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<style name="Title_1" fontName="Segoe UI" fontSize="48" isBold="true"/>
+	<style name="Coluna" fontName="Segoe UI" fontSize="12" isBold="true"/>
+	<style name="Detalhes" forecolor="#000000" fontName="Segoe UI" fontSize="12"/>
+	<style name="LINHA">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#99FF66"/>
+		</conditionalStyle>
+	</style>
+	<queryString>
+		<![CDATA[SELECT
+     tbl_vendas.`pk_id_vendas` AS tbl_vendas_pk_id_vendas,
+     tbl_vendas.`fk_cliente` AS tbl_vendas_fk_cliente,
+     tbl_vendas.`ven_data_venda` AS tbl_vendas_ven_data_venda,
+     tbl_vendas.`ven_valor_liquido` AS tbl_vendas_ven_valor_liquido,
+     tbl_vendas.`ven_valor_bruto` AS tbl_vendas_ven_valor_bruto,
+     tbl_vendas.`ven_desconto` AS tbl_vendas_ven_desconto,
+     tbl_cliente.`pk_id_cliente` AS tbl_cliente_pk_id_cliente,
+     tbl_cliente.`cli_nome` AS tbl_cliente_cli_nome,
+     tbl_cliente.`cli_endereco` AS tbl_cliente_cli_endereco,
+     tbl_cliente.`cli_bairro` AS tbl_cliente_cli_bairro,
+     tbl_cliente.`cli_cidade` AS tbl_cliente_cli_cidade,
+     tbl_cliente.`cli_uf` AS tbl_cliente_cli_uf,
+     tbl_cliente.`cli_cep` AS tbl_cliente_cli_cep,
+     tbl_cliente.`cli_telefone` AS tbl_cliente_cli_telefone,
+     tbl_vendas_produtos.`pk_id_venda_produto` AS tbl_vendas_produtos_pk_id_venda_produto,
+     tbl_vendas_produtos.`fk_produto` AS tbl_vendas_produtos_fk_produto,
+     tbl_vendas_produtos.`fk_vendas` AS tbl_vendas_produtos_fk_vendas,
+     tbl_vendas_produtos.`ven_pro_valor` AS tbl_vendas_produtos_ven_pro_valor,
+     tbl_vendas_produtos.`ven_pro_quantidade` AS tbl_vendas_produtos_ven_pro_quantidade,
+     tbl_produto.`pk_id_produto` AS tbl_produto_pk_id_produto,
+     tbl_produto.`pro_nome` AS tbl_produto_pro_nome,
+     tbl_produto.`pro_valor` AS tbl_produto_pro_valor,
+     tbl_produto.`pro_estoque` AS tbl_produto_pro_estoque
+FROM
+     `tbl_cliente` tbl_cliente INNER JOIN `tbl_vendas` tbl_vendas ON tbl_cliente.`pk_id_cliente` = tbl_vendas.`fk_cliente`
+     INNER JOIN `tbl_vendas_produtos` tbl_vendas_produtos ON tbl_vendas.`pk_id_vendas` = tbl_vendas_produtos.`fk_vendas`
+     INNER JOIN `tbl_produto` tbl_produto ON tbl_vendas_produtos.`fk_produto` = tbl_produto.`pk_id_produto`]]>
+	</queryString>
+	<field name="tbl_vendas_pk_id_vendas" class="java.math.BigInteger"/>
+	<field name="tbl_vendas_fk_cliente" class="java.math.BigInteger"/>
+	<field name="tbl_vendas_ven_data_venda" class="java.sql.Date"/>
+	<field name="tbl_vendas_ven_valor_liquido" class="java.lang.Double"/>
+	<field name="tbl_vendas_ven_valor_bruto" class="java.lang.Double"/>
+	<field name="tbl_vendas_ven_desconto" class="java.lang.Double"/>
+	<field name="tbl_cliente_pk_id_cliente" class="java.math.BigInteger"/>
+	<field name="tbl_cliente_cli_nome" class="java.lang.String"/>
+	<field name="tbl_cliente_cli_endereco" class="java.lang.String"/>
+	<field name="tbl_cliente_cli_bairro" class="java.lang.String"/>
+	<field name="tbl_cliente_cli_cidade" class="java.lang.String"/>
+	<field name="tbl_cliente_cli_uf" class="java.lang.String"/>
+	<field name="tbl_cliente_cli_cep" class="java.lang.String"/>
+	<field name="tbl_cliente_cli_telefone" class="java.lang.String"/>
+	<field name="tbl_vendas_produtos_pk_id_venda_produto" class="java.math.BigInteger"/>
+	<field name="tbl_vendas_produtos_fk_produto" class="java.math.BigInteger"/>
+	<field name="tbl_vendas_produtos_fk_vendas" class="java.math.BigInteger"/>
+	<field name="tbl_vendas_produtos_ven_pro_valor" class="java.lang.Double"/>
+	<field name="tbl_vendas_produtos_ven_pro_quantidade" class="java.lang.Integer"/>
+	<field name="tbl_produto_pk_id_produto" class="java.math.BigInteger"/>
+	<field name="tbl_produto_pro_nome" class="java.lang.String"/>
+	<field name="tbl_produto_pro_valor" class="java.lang.Double"/>
+	<field name="tbl_produto_pro_estoque" class="java.lang.Integer"/>
+	<group name="Group1">
+		<groupExpression><![CDATA[(int)($V{REPORT_COUNT}/15)]]></groupExpression>
+		<groupHeader>
+			<band height="24">
+				<frame>
+					<reportElement mode="Opaque" x="0" y="0" width="555" height="24" forecolor="#B89F7D" backcolor="#000000" uuid="652cb278-4bfa-43c6-a333-011ebf6aa342"/>
+					<textField isStretchWithOverflow="true">
+						<reportElement style="SubTitle" isPrintRepeatedValues="false" x="0" y="0" width="555" height="24" forecolor="#FFFFFF" uuid="f6bfb19f-632b-4531-890f-79023aeb3f81"/>
+						<textElement textAlignment="Center">
+							<font fontName="Segoe UI" isBold="false"/>
+						</textElement>
+						<textFieldExpression><![CDATA[Descrição do Pedido]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<group name="Group2">
+		<groupExpression><![CDATA[(int)($V{REPORT_COUNT}/5)]]></groupExpression>
+		<groupHeader>
+			<band height="30"/>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="144" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="1" y="0" width="553" height="132" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="447e71bd-da8b-4abd-83a8-de0f8d41a6e6"/>
+				<staticText>
+					<reportElement style="Title_1" x="10" y="10" width="313" height="55" uuid="02322914-74f9-400d-8fd3-431541e4b31d"/>
+					<textElement>
+						<font size="40"/>
+					</textElement>
+					<text><![CDATA[Well's Burger]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="65" width="155" height="24" forecolor="#000000" uuid="f77e1ae2-1db0-428f-b906-6aa51af3b700"/>
+					<textElement>
+						<font fontName="Segoe UI" size="16"/>
+					</textElement>
+					<text><![CDATA[Relatório de Vendas]]></text>
+				</staticText>
+				<image>
+					<reportElement x="366" y="10" width="187" height="79" uuid="729bbcb6-6d0e-4441-bb6d-f02dd22343a7"/>
+					<imageExpression><![CDATA["E:\\TCC\\Vendas\\src\\imagens\\icones\\logo_capa.png"]]></imageExpression>
+				</image>
+				<line>
+					<reportElement x="0" y="89" width="553" height="1" uuid="3f76396b-7f4c-4a84-8046-0a256a566f1a"/>
+				</line>
+				<staticText>
+					<reportElement x="397" y="89" width="155" height="24" forecolor="#000000" uuid="2e012c6a-d360-4989-a4d4-0919409af81c"/>
+					<textElement>
+						<font fontName="Segoe UI" size="16"/>
+					</textElement>
+					<text><![CDATA[Pedido de Venda N°:]]></text>
+				</staticText>
+			</frame>
+			<textField>
+				<reportElement x="398" y="113" width="143" height="24" uuid="c1b8e59f-1942-46c9-888d-3b85502aa6a9"/>
+				<textElement textAlignment="Right">
+					<font fontName="Segoe UI" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_vendas_pk_id_vendas}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="18" uuid="e8a39691-5587-4bd7-8535-405e563028c9"/>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="73c1c558-200b-439f-822c-da279acc1989"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#000000" uuid="6053c492-29c6-41d1-8959-02562ff13602"/>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

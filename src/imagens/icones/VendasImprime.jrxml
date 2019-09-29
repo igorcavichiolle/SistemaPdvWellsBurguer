@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="VendasImprime" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9aab8132-3379-42ce-88b3-309aea8383f3">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="24"/>
+	<queryString>
+		<![CDATA[SELECT
+     tbl_vendas.`pk_id_vendas` AS tbl_vendas_pk_id_vendas,
+     tbl_vendas.`fk_cliente` AS tbl_vendas_fk_cliente,
+     tbl_vendas.`ven_data_venda` AS tbl_vendas_ven_data_venda,
+     tbl_vendas.`ven_valor_liquido` AS tbl_vendas_ven_valor_liquido,
+     tbl_vendas.`ven_valor_bruto` AS tbl_vendas_ven_valor_bruto,
+     tbl_vendas.`ven_desconto` AS tbl_vendas_ven_desconto,
+     tbl_cliente.`pk_id_cliente` AS tbl_cliente_pk_id_cliente,
+     tbl_cliente.`cli_nome` AS tbl_cliente_cli_nome,
+     tbl_cliente.`cli_endereco` AS tbl_cliente_cli_endereco,
+     tbl_cliente.`cli_bairro` AS tbl_cliente_cli_bairro,
+     tbl_cliente.`cli_cidade` AS tbl_cliente_cli_cidade,
+     tbl_cliente.`cli_uf` AS tbl_cliente_cli_uf,
+     tbl_cliente.`cli_cep` AS tbl_cliente_cli_cep,
+     tbl_cliente.`cli_telefone` AS tbl_cliente_cli_telefone,
+     tbl_vendas_produtos.`pk_id_venda_produto` AS tbl_vendas_produtos_pk_id_venda_produto,
+     tbl_vendas_produtos.`fk_produto` AS tbl_vendas_produtos_fk_produto,
+     tbl_vendas_produtos.`fk_vendas` AS tbl_vendas_produtos_fk_vendas,
+     tbl_vendas_produtos.`ven_pro_valor` AS tbl_vendas_produtos_ven_pro_valor,
+     tbl_vendas_produtos.`ven_pro_quantidade` AS tbl_vendas_produtos_ven_pro_quantidade,
+     tbl_produto.`pk_id_produto` AS tbl_produto_pk_id_produto,
+     tbl_produto.`pro_nome` AS tbl_produto_pro_nome,
+     tbl_produto.`pro_valor` AS tbl_produto_pro_valor,
+     tbl_produto.`pro_estoque` AS tbl_produto_pro_estoque
+FROM
+     `tbl_cliente` tbl_cliente INNER JOIN `tbl_vendas` tbl_vendas ON tbl_cliente.`pk_id_cliente` = tbl_vendas.`fk_cliente`
+     INNER JOIN `tbl_vendas_produtos` tbl_vendas_produtos ON tbl_vendas.`pk_id_vendas` = tbl_vendas_produtos.`fk_vendas`
+     INNER JOIN `tbl_produto` tbl_produto ON tbl_vendas_produtos.`fk_produto` = tbl_produto.`pk_id_produto`]]>
+	</queryString>
+	<field name="tbl_vendas_pk_id_vendas" class="java.math.BigInteger"/>
+	<field name="tbl_vendas_fk_cliente" class="java.math.BigInteger"/>
+	<field name="tbl_vendas_ven_data_venda" class="java.sql.Date"/>
+	<field name="tbl_vendas_ven_valor_liquido" class="java.lang.Double"/>
+	<field name="tbl_vendas_ven_valor_bruto" class="java.lang.Double"/>
+	<field name="tbl_vendas_ven_desconto" class="java.lang.Double"/>
+	<field name="tbl_cliente_pk_id_cliente" class="java.math.BigInteger"/>
+	<field name="tbl_cliente_cli_nome" class="java.lang.String"/>
+	<field name="tbl_cliente_cli_endereco" class="java.lang.String"/>
+	<field name="tbl_cliente_cli_bairro" class="java.lang.String"/>
+	<field name="tbl_cliente_cli_cidade" class="java.lang.String"/>
+	<field name="tbl_cliente_cli_uf" class="java.lang.String"/>
+	<field name="tbl_cliente_cli_cep" class="java.lang.String"/>
+	<field name="tbl_cliente_cli_telefone" class="java.lang.String"/>
+	<field name="tbl_vendas_produtos_pk_id_venda_produto" class="java.math.BigInteger"/>
+	<field name="tbl_vendas_produtos_fk_produto" class="java.math.BigInteger"/>
+	<field name="tbl_vendas_produtos_fk_vendas" class="java.math.BigInteger"/>
+	<field name="tbl_vendas_produtos_ven_pro_valor" class="java.lang.Double"/>
+	<field name="tbl_vendas_produtos_ven_pro_quantidade" class="java.lang.Integer"/>
+	<field name="tbl_produto_pk_id_produto" class="java.math.BigInteger"/>
+	<field name="tbl_produto_pro_nome" class="java.lang.String"/>
+	<field name="tbl_produto_pro_valor" class="java.lang.Double"/>
+	<field name="tbl_produto_pro_estoque" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="145" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="2" y="0" width="553" height="132" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="b25f04d3-544c-48c7-8907-b77efaff310d"/>
+				<staticText>
+					<reportElement style="Title_1" x="10" y="10" width="313" height="55" uuid="591a40cb-4335-4317-9cf1-8210da6f7598"/>
+					<textElement>
+						<font size="40"/>
+					</textElement>
+					<text><![CDATA[Well's Burger]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="65" width="155" height="24" forecolor="#000000" uuid="f12924cd-7573-4d82-9ef5-264bd61c8745"/>
+					<textElement>
+						<font fontName="Segoe UI" size="16"/>
+					</textElement>
+					<text><![CDATA[Relatório de Vendas]]></text>
+				</staticText>
+				<image>
+					<reportElement x="366" y="10" width="187" height="79" uuid="a2ca5616-14d5-4708-80dc-f8655d96dc76"/>
+					<imageExpression><![CDATA["E:\\TCC\\Vendas\\src\\imagens\\icones\\logo_capa.png"]]></imageExpression>
+				</image>
+				<line>
+					<reportElement x="0" y="89" width="553" height="1" uuid="ac7fb184-1207-43f8-af87-2f9a6d974dd4"/>
+				</line>
+				<staticText>
+					<reportElement x="398" y="108" width="155" height="24" forecolor="#000000" uuid="c4015ac3-bf13-42d2-8bd1-7718e63f0350"/>
+					<textElement>
+						<font fontName="Segoe UI" size="16"/>
+					</textElement>
+					<text><![CDATA[Pedido de Venda N°:]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
